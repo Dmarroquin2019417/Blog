@@ -1,0 +1,27 @@
+import { useNavigate } from "react-router-dom";
+import { PostCard } from "./PostCard";
+
+export const Posts = ({posts}) => {
+    const navigate  = useNavigate()
+
+    const handleNavigateToPost = (id) => {
+        navigate(`/post/${id}`)
+    }
+
+
+    return (
+        <div className="posts-container">
+          {Array.isArray(posts.posts) && posts.posts.map((p) => (
+            <PostCard
+              key={p.id}
+              _id={p._id}
+              usuario={p.usuario}
+              post={p.titulo}
+              estilo={p.estilo}
+              texto={p.texto}
+              navigateToPostHandler={handleNavigateToPost}
+            />
+          ))}
+        </div>
+      );      
+}
